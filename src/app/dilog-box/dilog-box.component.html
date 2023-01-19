@@ -1,0 +1,91 @@
+<mat-dialog-content>
+  <div class="mb-44 ">
+    <div class="dialog-headline">
+      <h4 class="float-left" *ngIf="!pusrpose">Add Employee</h4>
+       <h4 class="float-left" *ngIf="pusrpose">Edit Employee</h4>
+        <span class="float-right">
+       <mat-icon class="pull-right close-icon" (click)="onConfirmClick()">close</mat-icon>
+     </span>
+    </div>
+</div>
+
+
+<form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails()">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="First Name" formControlName="fname" required>
+    <mat-error *ngFor="let validation of validation_messages?.fname">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('fname')?.hasError(validation.type) && (userDetailsForm.get('fname')?.dirty || userDetailsForm.get('fname')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Last Name" formControlName="lname" required>
+    <mat-error *ngFor="let validation of validation_messages?.lname">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('lname')?.hasError(validation.type) && (userDetailsForm.get('lname')?.dirty || userDetailsForm.get('lname')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Email Id" formControlName="emailId" required>
+    <mat-error *ngFor="let validation of validation_messages?.emailId">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('emailId')?.hasError(validation.type) && (userDetailsForm.get('emailId')?.dirty || userDetailsForm.get('emailId')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Department" formControlName="dept" required>
+    <mat-error *ngFor="let validation of validation_messages?.dept">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('dept')?.hasError(validation.type) && (userDetailsForm.get('dept')?.dirty || userDetailsForm.get('dept')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+
+
+  <mat-form-field class="full-width">
+    <mat-label>File matInput</mat-label>
+    <button mat-icon-button matPrefix (click)="f_input.click()">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <input type="text" readonly matInput formControlName="profileIcon" />
+    <input
+      type="file"
+      multiple
+      hidden
+      #f_input
+      (change)="handleFileInputChange(f_input.files)"
+    />
+    <mat-error *ngFor="let validation of validation_messages?.profileIcon">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('profileIcon')?.hasError(validation.type) && (userDetailsForm.get('profileIcon')?.dirty || userDetailsForm.get('profileIcon')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [matDatepicker]="picker" placeholder="Your birthday" formControlName="dob" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngFor="let validation of validation_messages.dob">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('dob')?.hasError(validation.type) && (userDetailsForm.get('dob')?.dirty || userDetailsForm.get('dob')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="full-width">
+    <input matInput placeholder="Profile Icon" formControlName="profileIcon" required>
+    <mat-error *ngFor="let validation of validation_messages?.profileIcon">
+      <mat-error class="error-message" *ngIf="userDetailsForm.get('profileIcon')?.hasError(validation.type) && (userDetailsForm.get('profileIcon')?.dirty || userDetailsForm.get('profileIcon')?.touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field> -->
+
+
+  <div class="container text-center">
+    <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
+      Submit
+    </button>
+  </div>
+
+
+</form>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="center">
+	<button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions> -->
