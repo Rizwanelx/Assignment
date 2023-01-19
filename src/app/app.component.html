@@ -8,29 +8,9 @@
       <button mat-flat-button color="primary" (click)="openDialogForAdd()">Create</button>
   </div>
   <div class="row">
-    <div class="col-lg-3 col-md-3 mb-4" *ngFor="let empoly of allEmpoly">
-      <mat-card class="example-card">
-        <div class="image-container">
-          <img class="fluid-image" mat-card-image src="../assets/profile-icons/{{empoly?.profileIcon}}" alt="Photo of a Shiba Inu">
-        </div>
-        <mat-card-content>
-          <p class="text-center pt-4 pb-4"><b>{{empoly?.fname|titlecase}}&nbsp;{{empoly?.lname|titlecase}}</b> </p>
-          <p><b>Department:</b> {{empoly?.dept|titlecase}}</p>
-          <p><b>Email:</b> {{empoly?.emailId}}</p>
-            <p><b>Age:</b> {{calculateDiff(empoly?.dob)}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <div  class="text-right">
-            <span>
-              <mat-icon (click)="editEmpolyee(empoly)">edit</mat-icon>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let empoly of allEmpoly">
+      <app-mat-card [empoly]="empoly" (deleteEmpolyeeEvent)="deleteEmpolyee($event)"></app-mat-card>
 
-            </span>
-              <span>
-                <mat-icon (click)="deleteEmpolyee(empoly?.empId)">delete</mat-icon>
-              </span>
-            </div>
-        </mat-card-actions>
-      </mat-card>
     </div>
   </div>
 </div>

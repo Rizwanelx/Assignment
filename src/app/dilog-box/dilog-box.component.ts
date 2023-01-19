@@ -91,31 +91,15 @@ export class DilogBoxComponent  implements OnInit{
 
   handleFileInputChange(l: any): void {
     this.file_store = l;
-    console.log("l",l)
     if (l.length) {
       const f = l[0];
       const count = l.length > 1 ? `(+${l.length - 1} files)` : "";
-      console.log("f",f)
-      console.log("count",count)
-      // this.userDetailsForm.patchValue(`${f.name}${count}`);
       this.userDetailsForm.controls['profileIcon'].setValue(`${f.name}${count}`);
-
-      // this.userDetailsForm.value.profileIcon.patchValue(`${f.name}${count}`);
     } else {
       this.userDetailsForm.controls['profileIcon'].setValue('');
     }
   }
 
-  handleSubmit(): void {
-    var fd = new FormData();
-    this.file_list = [];
-    for (let i = 0; i < this.file_store.length; i++) {
-      fd.append("files", this.file_store[i], this.file_store[i].name);
-      this.file_list.push(this.file_store[i].name);
-    }
-
-    // do submit ajax
-  }
 
 
   onSubmitUserDetails() {

@@ -22,11 +22,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {DatePipe} from '@angular/common';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatCardComponent } from './mat-card/mat-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DilogBoxComponent
+    DilogBoxComponent,
+    MatCardComponent
   ],
   imports: [
     BrowserModule,
